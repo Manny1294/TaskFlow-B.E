@@ -20,14 +20,14 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-// Require tenant context for all business endpoints.
+// Serve generated CSV files directly for browser download.
+app.use("/exports", express.static(path.join(process.cwd(), "exports")));
+
+// Require tenant context for business endpoints.
 app.use(tenantMiddleware);
 
 app.use("/tasks", taskRoutes);
 app.use("/exports", exportRoutes);
-
-// Serve generated CSV files.
-app.use("/exports", express.static(path.join(process.cwd(), "exports")));
 
 // Must be last.
 app.use(errorHandler);
