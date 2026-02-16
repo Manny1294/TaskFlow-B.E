@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 // Organizations live in the public schema.
-// Each organization points to its own tenant schema.
+// Each organization now points to its own tenant schema.
 const Organization = sequelize.define(
   "Organization",
   {
@@ -26,7 +26,7 @@ const Organization = sequelize.define(
     tableName: "organizations",
     schema: "public",
     underscored: true,
-  }
+  },
 );
 
 module.exports = Organization;

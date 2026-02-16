@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 // This is the base Task model.
-// We will dynamically point it to a tenant schema per request.
+// i am dynamically pointing it to a tenant schema per request.
 const Task = sequelize.define(
   "Task",
   {
@@ -37,7 +37,7 @@ const Task = sequelize.define(
   {
     tableName: "tasks",
     underscored: true,
-  }
+  },
 );
 
 module.exports = Task;
