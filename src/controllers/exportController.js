@@ -38,10 +38,20 @@ async function getExportStatus(req, res, next) {
     }
 
     const state = await job.getState();
+    // Bull can expose progress either as a function getter or as a number.
+    // Read it safely so UI always gets the real percentage.
+    const rawProgress =
+      typeof job.progress === "function" ? await job.progress() : job.progress;
+    let progress = typeof rawProgress === "number" ? rawProgress : 0;
+
+    // If the job is completed but progress wasn't persisted, report 100%.
+    if (state === "completed" && progress === 0) {
+      progress = 100;
+    }
 
     const baseResponse = {
       status: state,
-      progress: typeof job.progress === "number" ? job.progress : 0,
+      progress,
     };
 
     if (state === "completed") {
