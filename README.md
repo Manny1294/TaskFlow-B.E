@@ -89,6 +89,15 @@ Check export status:
 curl -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5001/exports/<jobId>
 ```
 
+## Validation Results
+- Missing headers (`GET /tasks`) -> `400 Bad Request` (PASS)
+- Invalid tenant (`GET /tasks` with `x-tenant-id: 9999`) -> `404 Not Found` (PASS)
+- Non-admin export (`POST /tasks/export` with member user) -> `403 Forbidden` (PASS)
+- Invalid task ID (`PATCH /tasks/99999`) -> `404 Not Found` (PASS)
+- Tenant isolation verified:
+  - Task created in tenant 2 is not visible in tenant 1 list
+  - Tenant 2 CSV export contains only tenant 2 tasks
+
 ## Scripts
 - `npm run dev` - run with nodemon
 - `npm start` - run server

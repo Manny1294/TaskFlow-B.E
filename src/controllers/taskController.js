@@ -20,7 +20,8 @@ async function listTasks(req, res, next) {
 
 async function createTask(req, res, next) {
   try {
-    const { title, description, status } = req.body;
+    // Default to empty body so malformed/missing JSON returns validation errors, not 500.
+    const { title, description, status } = req.body || {};
     const { Task } = req.models;
 
     if (!title || typeof title !== "string" || !title.trim()) {
