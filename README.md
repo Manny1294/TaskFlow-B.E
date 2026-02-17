@@ -50,6 +50,8 @@ npm run seed
 npm run dev
 ```
 
+Note: this project defaults to `PORT=5001` to avoid macOS AirPlay conflicts that can occur on `5000`.
+
 ## Create a Tenant
 This project seeds two tenants by default. To create a new tenant manually:
 1. Insert an organization row into `public.organizations` with a unique `schema_name`.
@@ -74,17 +76,17 @@ Headers required for protected endpoints:
 ## Quick Testing (curl)
 Get tasks for Acme (tenant 1, user 1):
 ```bash
-curl -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5000/tasks
+curl -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5001/tasks
 ```
 
 Trigger export:
 ```bash
-curl -X POST -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5000/tasks/export
+curl -X POST -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5001/tasks/export
 ```
 
 Check export status:
 ```bash
-curl -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5000/exports/<jobId>
+curl -H "x-tenant-id: 1" -H "x-user-id: 1" http://localhost:5001/exports/<jobId>
 ```
 
 ## Scripts
