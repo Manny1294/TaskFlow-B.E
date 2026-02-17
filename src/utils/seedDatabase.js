@@ -65,13 +65,13 @@ async function seedDatabase() {
           status: "completed",
           ownerEmail: "mary@acme.com",
         },
-      ]
+      ],
     );
 
     await seedTenantData(
       "tenant_globex",
       [
-        { name: "Alice Admin", email: "alice@globex.com", role: "admin" },
+        { name: "Manny Admin", email: "manny@globex.com", role: "admin" },
         { name: "Bob Member", email: "bob@globex.com", role: "member" },
         { name: "Eve Member", email: "eve@globex.com", role: "member" },
       ],
@@ -88,7 +88,7 @@ async function seedDatabase() {
           status: "pending",
           ownerEmail: "bob@globex.com",
         },
-      ]
+      ],
     );
 
     console.log("Seed complete.");
