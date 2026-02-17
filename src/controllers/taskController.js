@@ -49,7 +49,7 @@ async function createTask(req, res, next) {
 async function updateTaskStatus(req, res, next) {
   try {
     const { id } = req.params;
-    const { status } = req.body;
+    const { status } = req.body || {};
     const { Task } = req.models;
 
     // For this assessment, PATCH is focused on marking as completed.
